@@ -33,12 +33,12 @@ mainLogger.LogInformation("Сервис остановлен");
 
 return;
 
-static void ConfigureServices(IServiceCollection services, IConfiguration configuration, ILogger<BotService> logger)
+static void ConfigureServices(IServiceCollection services, IConfiguration configuration, ILogger<BotService> botLogger)
 {
     var token = configuration["TelegramToken"];
     
     services.AddSingleton<ITelegramBotClient>(new TelegramBotClient(token));
-    services.AddSingleton(logger);
+    services.AddSingleton(botLogger);
     services.AddHostedService<BotService>();
 }
     
